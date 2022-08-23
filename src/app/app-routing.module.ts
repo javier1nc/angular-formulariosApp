@@ -6,13 +6,18 @@ import { SwitchesComponent } from './reactive/switches/switches.component';
 
 const routes: Routes = [
   {
-    path: '',
-    children: [
-      { path: 'basico', component: BasicosComponent },
-      { path: 'dinamicos', component: DinamicosComponent },
-      { path: 'switches', component: SwitchesComponent },
-      { path: '**', redirectTo: 'basicos' },
-    ],
+    path: 'template',
+    loadChildren: () =>
+      import('./template/template.module').then((m) => m.TemplateModule),
+  },
+  {
+    path: 'reactive',
+    loadChildren: () =>
+      import('./reactive/reactive.module').then((m) => m.ReactiveModule),
+  },
+  {
+    path: '**',
+    redirectTo: 'template',
   },
 ];
 
